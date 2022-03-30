@@ -243,7 +243,7 @@ def main():
 	board = None
 	if input_type == 1:
 		board = manual_input()
-	if input_type == 2:
+	elif input_type == 2:
 		board = random_input()
 	else:
 		main()
