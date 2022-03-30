@@ -63,6 +63,72 @@ export default {
 		clearBoard() {
 			this.hasResult = false
 			this.$refs.gameBoard.resetValues()
+			this.error = false
+		},
+		readFile() {
+			let file = this.$refs.fileInput.files[0]
+			const reader = new FileReader()
+
+			reader.onload = (res) => {
+				let fullText = res.target.result
+				fullText = fullText.replace('\r', '')
+
+				let lines = fullText.split('\n')
+				
+				let squares = []
+
+				let square_set = new Set()
+				for(let i = 0; i < lines.length; ++i) {
+					let numbers = lines[i].split(' ')
+
+					if(numbers.length != 4) {
+						this.error = true
+						this.errorMessage = "The file doesn't contain enough data"
+						return
+					}
+
+					for(let j = 0; j < numbers.length; ++j) {
+						if(square_set.has(numbers[j]) == false) {
+							square_set.add(numbers[j])
+						} else {
+							this.error = true
+							this.errorMessage = "There's a duplicate value"
+							return
+						}
+
+						if(numbers[j] == '_') {
+							squares.push('')
+							continue
+						}
+
+						if(numbers[j].indexOf('.') > 1) {
+							this.error = true
+							this.errorMessage = "There's non-integer value"
+							return
+						}
+
+						let temp = parseInt(numbers[j])
+
+						if(isNaN(temp)) {
+							this.error = true
+							this.errorMessage = "There's non integer value"
+							return
+						}
+
+						if(temp < 1 || temp > 15) {
+							this.error = true
+							this.errorMessage = "There's value out of range"
+							return
+						}
+
+						squares.push(numbers[j])
+					}
+				}
+
+				this.$refs.gameBoard.setValues(squares)
+			}
+
+			reader.readAsText(file)
 		},
 		/**
 		 * fungsi ini berfungsi untuk menerima masukkan yang diterima dan mengecek
@@ -143,6 +209,7 @@ export default {
 				<GameBoard ref='gameBoard'/>
 				<button class='calculate' @click='calculateBnb'>Calculate BnB</button>
 			</div>
+			<input type='file' @change='readFile' ref='fileInput' />
 			<button @click='randomize' class='randomize'>Randomize Squares</button>
 			<button @click='clearBoard'>Clear Board</button>
 			<button @click='stopApp'> Quit App </button>
@@ -191,6 +258,12 @@ button {
 	width: 200px;
 	height: 100px;
 	font-size: 30px;
+}
+
+input {
+	width: 200px;
+	height: 100px;
+	font-size: 15px;
 }
 
 div {

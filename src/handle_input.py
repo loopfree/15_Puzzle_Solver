@@ -1,6 +1,43 @@
 from board import Board
 from random import shuffle, randint
 
+def file_input():
+	print('Please insert the file name')
+	filename = input()
+	board = Board()
+	try:
+		with open(filename, 'r') as f:
+			for line in f:
+				col_in = line.strip().split(' ')
+				if len(col_in) != 4:
+					print('the number of column doesn\'t match the required amount')
+					return None
+
+				int_form = []
+
+				for elem in col_in:
+					try:
+						if elem == '_':
+							int_form.append(-1)
+						else:
+							int_form.append(int(elem))
+							checker = int_form[-1]
+							if (checker < 1) and (checker > 16):
+								print('your input contains a number that is out of range')
+								return None
+					except ValueError:
+						print('one of your input doesn\'t contain integer')
+						return None
+
+				for elem in int_form:
+					if(not board.add_square(elem)):
+						print('There\'s a duplicate number in your board')
+						return None
+	except FileNotFoundError:
+		print('file not found')		
+
+	return board
+
 def manual_input():
 	print('Please enter the starting matrix.')
 	print('For the empty space, please insert the _ symbol')
@@ -19,11 +56,13 @@ def manual_input():
 		succeed = True
 
 		'''
-			This line of code receives the user input
-			and then afterwards, remove any trailing spaces from behind
-			and only after that, it splits the string into multiple substrings
-			with spaces as it's delimiter and converts it into list in order
-			to be proccesses
+			kode ini menerima inputan pengguna
+			lalu menghilangkan spasi yang di mana
+			setelah spasi tersebut dihilangkan,
+			dilakukan pemisahan string inputan menjadi
+			beberapa substring menggunakan spasi sebagai
+			pemisah dan mengkonversinya menjadi list
+			sehingga dapat diolah lebih lanjur
 		'''
 
 		user_in = list(input().strip().split(' '))

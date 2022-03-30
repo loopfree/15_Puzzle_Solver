@@ -31,6 +31,12 @@ export default {
 			for(let i = this.board_data.length; i < 16; ++i) {
 				this.board_data.push('')
 			}
+		},
+		setValues(newValue) {
+			this.board_data = newValue
+			for(let i = this.board_data.length; i < 16; ++i) {
+			this.board_data.push('')
+		}
 		}
 	}
 }

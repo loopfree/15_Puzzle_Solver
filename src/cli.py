@@ -1,10 +1,10 @@
 from board import Board
-from handle_input import manual_input, random_input
+from handle_input import manual_input, random_input, file_input
 from time import time
 from functools import cmp_to_key
 
 '''
-	fungsi untuk untuk dimasukkan ke dalam key
+	fungsi untuk dimasukkan ke dalam parameter key
 	di dalam fungsi min(), mengembalikan tuple dimana
 	elem[0] merupakan level dan elem[1] merupakan cost
 '''
@@ -20,6 +20,7 @@ def bnb_cmp(a, b):
 			 return -1
 		else:
 			return 0
+
 '''	
 	fungsi untuk mendapatkan semua angka yang lebih kecil dari X
 	dengan constraint lebih besar dari 1
@@ -34,7 +35,7 @@ def get_smaller_number_list(number):
 
 '''
 	fungsi ini untuk mendapatkan apakah kurang nanti akan
-	ditamabah 1 atau 0. Fungsi ini mendapatkan hasil tersebut dengan patterm
+	ditambah 1 atau 0. Fungsi ini mendapatkan hasil tersebut dengan patterm
 	apabila index dari kosong yang terdapat pada board tersebut (asumsi mulai dari 0),
 	dibagi 4 dan dimod 2 haslinya sama dengan dimod 2 saja, maka tidak berada di area arsir, sebaliknya
 	apabila hasilnya dibagi 4 dan dimod 2 tidak sama dengan dimod 2 saja, maka berada di area arsir.
@@ -53,7 +54,6 @@ def get_kurang_x(board):
 	fungsi ini mengkalkulasi semua kurang()
 	dan mengembalikannya dalam bentuk list
 '''
-
 def get_kurang(board):
 	result = []
 	for index in range(len(board.square)):
@@ -79,7 +79,8 @@ def print_kurang(kurang):
 		print('i:', elem[0], 'kurang(i):', elem[1])
 
 '''
-	pruning setelah mendapatkan algoritma
+	pruning setelah mendapatkan solusi
+	dari algoritma branch and bound
 '''
 def prune(queue):
 	queue.empty()
@@ -102,13 +103,13 @@ def bnb(board):
 	checker = kurang_sum + x
 	print('Sum from i=0 to 16 from KURANG(i) + X = ', checker)
 	if checker % 2 != 0:
-		print('Status tujuan tidak dapat dicapai')
+		print('Status tujuan tidak dapat dicapai (Puzzle Unsolvable)')
 		return
 
 	queue = [(0, 0, board)]
 	set_board = {board}
 
-	print('Doing Branch and Bound')
+	print('\nDoing Branch and Bound')
 	print('--------------------------------------------------')
 
 	while True:
@@ -238,15 +239,21 @@ def main():
 	print('Please choose an input type')
 	print('1. Manual Input')
 	print('2. Random Input')
-	input_type = int(input())
+	print('3. File Input')
+	input_type = int(input('>> '))
 
 	board = None
 	if input_type == 1:
 		board = manual_input()
 	elif input_type == 2:
 		board = random_input()
+	elif input_type == 3:
+		board = file_input()
 	else:
 		main()
+		return
+
+	if board is None:
 		return
 	
 	start = time()	

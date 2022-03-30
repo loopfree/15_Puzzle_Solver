@@ -20,7 +20,7 @@
 
 ### CLI
 
-<strong>NOTE : </strong>Untuk input manual, kotak kosong dilambangkan dengan "\_" (<em>underscore</em>)
+<strong><em>NOTE</em> : </strong>Untuk input manual dan input file, kotak kosong dilambangkan dengan "\_" (<em>underscore</em>)
 
 1. Download/Clone Repository ini
 2. Buka Terminal
@@ -32,7 +32,9 @@
 
 ### GUI
 
-<strong>NOTE : </strong>Gunakan <em>Google Chrome</em> sebagai default browser
+<strong><em>NOTE</em> : </strong>Gunakan <em>Google Chrome</em> sebagai default browser<strong>
+
+<strong><em>NOTE</em> : </strong>Untuk input file, kotak kosong dilambangkan dengan "\_" (<em>underscore</em>)
 
 1. Download/Clone Repository ini
 2. Buka Windows Powershell
@@ -56,12 +58,21 @@
 
 ## Tampilan CLI
 
-### Tampilan Solveable
+### Tampilan Solveable Manual Input
 
 <table>
    <tr>
       <td> <img src="./a-readme-related/cli-s-1.jpg" /> </td>
       <td> <img src="./a-readme-related/cli-s-2.jpg" /> </td>
+   </tr>
+</table>
+
+### Tampilan Solveable File Input
+
+<table>
+   <tr>
+      <td> <img src="./a-readme-related/cli-s-3.jpg" /> </td>
+      <td> <img src="./a-readme-related/cli-s-4.jpg" /> </td>
    </tr>
 </table>
 
@@ -75,9 +86,13 @@
 
 ![Tampilan awal](./a-readme-related/gui-awal.jpg)
 
-### Tampilan Akhir Solveable
+### Tampilan Akhir Solveable Manual Input
 
-![Tampilan akhir](./a-readme-related/gui-akhir-s.jpg)
+![Tampilan akhir](./a-readme-related/gui-akhir-s-1.jpg)
+
+### Tampilan Akhir Solveable Input File
+
+![Tampilan akhir](./a-readme-related/gui-akhir-s-2.jpg)
 
 ### Tampilan Akhir Unsolvable
 

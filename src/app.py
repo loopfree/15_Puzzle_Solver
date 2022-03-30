@@ -4,7 +4,7 @@ from time import time
 from functools import cmp_to_key
 
 '''
-	fungsi untuk untuk dimasukkan ke dalam key
+	fungsi untuk dimasukkan ke dalam parameter key
 	di dalam fungsi min(), mengembalikan tuple dimana
 	elem[0] merupakan level dan elem[1] merupakan cost
 '''
@@ -20,6 +20,7 @@ def bnb_cmp(a, b):
 			 return -1
 		else:
 			return 0
+
 '''	
 	fungsi untuk mendapatkan semua angka yang lebih kecil dari X
 	dengan constraint lebih besar dari 1
@@ -53,7 +54,6 @@ def get_kurang_x(board):
 	fungsi ini mengkalkulasi semua kurang()
 	dan mengembalikannya dalam bentuk list
 '''
-
 def get_kurang(board):
 	result = []
 	for index in range(len(board.square)):
@@ -71,7 +71,8 @@ def get_kurang(board):
 	return result
 
 '''
-	pruning setelah mendapatkan algoritma
+	pruning setelah mendapatkan solusi
+	dari algoritma branch and bound
 '''
 def prune(queue):
 	queue.empty()
@@ -244,7 +245,9 @@ def main():
 	def stop_program():
 		exit()
 
-	eel.start('index.html') #, mode='edge')
+	#eel.start('index.html', mode='edge')
+	#eel.start('index.html', mode='chrome')
+	eel.start('index.html')
 
 
 if __name__ == '__main__':
