@@ -1,0 +1,18 @@
+.vertical {
+	display: flex;
+	flex-direction: column;
+	/*flex-wrap: wrap;*/
+}
+
+.horizontal {
+	display: flex;
+	flex-direction: row;
+	/*flex-wrap: wrap;*/
+}
+
+.board-square {
+	width: 60px;
+	height: 60px;
+	margin: 0 0 0 0;
+	font-size: 40px;
+}
