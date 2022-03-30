@@ -100,7 +100,7 @@ def bnb(board):
 	x = get_kurang_x(board)
 
 	checker = kurang_sum + x
-	print('sum kurang + x:', checker)
+	print('Sum from i=0 to 16 from KURANG(i) + X = ', checker)
 	if checker % 2 != 0:
 		print('Status tujuan tidak dapat dicapai')
 		return
@@ -108,7 +108,7 @@ def bnb(board):
 	queue = [(0, 0, board)]
 	set_board = {board}
 
-	print('Doing BnB')
+	print('Doing Branch and Bound')
 	print('--------------------------------------------------')
 
 	while True:
@@ -235,14 +235,19 @@ def bnb(board):
 
 def main():
 
-	print('please enter 1 for manual input and 2 for random input:')
+	print('Please choose an input type')
+	print('1. Manual Input')
+	print('2. Random Input')
 	input_type = int(input())
 
 	board = None
 	if input_type == 1:
 		board = manual_input()
-	else:
+	if input_type == 2:
 		board = random_input()
+	else:
+		main()
+		return
 	
 	start = time()	
 
@@ -250,7 +255,7 @@ def main():
 
 	end = time()
 
-	print('this program takes ', end - start)
+	print('This program takes ', end - start, ' second(s)')
 
 if __name__ == '__main__':
 	main()
