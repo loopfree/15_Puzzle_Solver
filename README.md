@@ -56,7 +56,7 @@
 
 ## Tampilan CLI
 
-#### Tampilan Solveable
+### Tampilan Solveable
 
 <table>
    <tr>
@@ -65,21 +65,21 @@
    </tr>
 </table>
 
-#### Tampilan Unsolveable
+### Tampilan Unsolveable
 
 ![Tampilan awal](./a-readme-related/cli-us-1.jpg)
 
 ## Tampilan GUI
 
-#### Tampilan Awal
+### Tampilan Awal
 
 ![Tampilan awal](./a-readme-related/gui-awal.jpg)
 
-#### Tampilan Akhir Solveable
+### Tampilan Akhir Solveable
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-s.jpg)
 
-#### Tampilan Akhir Unsolveable
+### Tampilan Akhir Unsolveable
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-us.jpg)
 
@@ -94,4 +94,15 @@ Atas bimbingan dan kesempatannya, saya mengucapkan terima kasih kepada
 
 ## Identitas Pembuat
 
-<strong>Steven - 13520131</strong>
+<table>
+   <tr align = "center">
+      <td>Nama</td>
+      <td>NIM</td>
+      <td>Kelas</td>
+   </tr>
+   <tr align = "center">
+      <td>Steven</td>
+      <td>13520131</td>
+      <td>K02</td>
+   </tr>
+</table>
