@@ -58,9 +58,12 @@
 
 #### Tampilan Solveable
 
-![Tampilan awal](./a-readme-related/cli-s-1.jpg)
-
-![Tampilan akhir](./a-readme-related/cli-s-2.jpg)
+<table>
+   <tr>
+      <td> <img src="./a-readme-related/cli-s-1.jpg" /> </td>
+      <td> <img src="./a-readme-related/cli-s-2.jpg" /> </td>
+   </tr>
+</table>
 
 #### Tampilan Unsolveable
 
