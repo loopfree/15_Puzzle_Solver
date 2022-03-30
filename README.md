@@ -65,7 +65,7 @@
    </tr>
 </table>
 
-### Tampilan Unsolveable
+### Tampilan Unsolvable
 
 ![Tampilan awal](./a-readme-related/cli-us-1.jpg)
 
@@ -79,7 +79,7 @@
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-s.jpg)
 
-### Tampilan Akhir Unsolveable
+### Tampilan Akhir Unsolvable
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-us.jpg)
 
