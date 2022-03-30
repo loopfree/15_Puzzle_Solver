@@ -32,7 +32,7 @@
 
 ### GUI
 
-<strong><em>NOTE</em> : </strong>Gunakan <em>Google Chrome</em> sebagai default browser<strong>
+<strong><em>NOTE</em> : </strong>Gunakan <em>Google Chrome</em> sebagai default browser
 
 <strong><em>NOTE</em> : </strong>Untuk input file, kotak kosong dilambangkan dengan "\_" (<em>underscore</em>)
 
