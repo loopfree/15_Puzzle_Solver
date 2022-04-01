@@ -1,4 +1,4 @@
-# Tugas Besar 2 IF2211 Strategi Algoritma
+# Tugas Kecil 3 IF2211 Strategi Algoritma
 
 > Membuat program untuk menyelesaikan persoalan 15-Puzzle dengan menggunakan Algoritma <em>Branch and Bound</em>. Nilai <em>bound</em> tiap simpul adalah penjumlahan cost yang diperlokan untuk sampai suatu simpul x dari akar, dengan taksiran <em>cost</em> simpul x untuk sampai ke <em>goal</em>. Taksiran cost yang digunakan adalah jumlah ubin tidak kosong yang tidak berada pada tempat sesuai susunan akhir (<em>goalstate</em>). Untuk semua instansiasi persoalan 15-puzzle, susunan akhir yang diinginkan terurut seperti berikut: <table> <tr align = "center"> <td>1</td> <td>2</td> <td>3</td> <td>4</td> </tr> <tr align = "center"> <td>5</td> <td>6</td> <td>7</td> <td>8</td> </tr> <tr align = "center"> <td>9</td> <td>10</td> <td>11</td> <td>12</td> </tr> <tr align = "center"> <td>13</td> <td>14</td> <td>15</td> <td></td> </tr> </table>
 
