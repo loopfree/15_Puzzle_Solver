@@ -101,25 +101,36 @@ def bnb(board):
 	x = get_kurang_x(board)
 
 	checker = kurang_sum + x
-	print('Sum from i=0 to 16 from KURANG(i) + X = ', checker)
+	print('Sum from i=0 to 16 of KURANG(i) + X = ', checker)
 	if checker % 2 != 0:
 		print('Status tujuan tidak dapat dicapai (Puzzle Unsolvable)')
-		return
+		return (None, None)
 
-	queue = [(0, 0, board)]
+	queue = [(0, 0, board, None)]
 	set_board = {board}
 
 	print('\nDoing Branch and Bound')
 	print('--------------------------------------------------')
 
+	prev_level = 0
+
+	total_explored = 0
+
+	board_output = []
 	while True:
 
 		to_check = min(queue, key=cmp_to_key(bnb_cmp))
 		queue.remove(to_check)
 		check_board = to_check[2]
 		check_level = to_check[0] + 1
+		check_dir = to_check[3]
 
-		print(check_board)
+		if prev_level > check_level:
+			board_output = [(board, None)]
+
+		prev_level = check_level
+
+		board_output.append((check_board, check_dir))
 
 		if check_board.g_cost() == 0:
 			break
@@ -153,11 +164,12 @@ def bnb(board):
 
 		if succeed:
 			cost = up_board.g_cost() + (check_level)
-			queue.append((check_level, cost, up_board))
+			queue.append((check_level, cost, up_board, 'UP'))
 			set_board.add(up_board)
+			total_explored += 1
 
 		'''
-			move bottom
+			move down
 		'''
 
 		succeed = True
@@ -178,8 +190,9 @@ def bnb(board):
 
 		if succeed:
 			cost = bottom_board.g_cost() + (check_level)
-			queue.append((check_level, cost, bottom_board))
+			queue.append((check_level, cost, bottom_board, 'DOWN'))
 			set_board.add(bottom_board)
+			total_explored += 1
 
 		'''
 			move left
@@ -203,8 +216,9 @@ def bnb(board):
 
 		if succeed:
 			cost = left_board.g_cost() + (check_level)
-			queue.append((check_level, cost, left_board))
+			queue.append((check_level, cost, left_board, 'LEFT'))
 			set_board.add(left_board)
+			total_explored += 1
 
 		'''
 			move right
@@ -228,8 +242,11 @@ def bnb(board):
 
 		if succeed:
 			cost = right_board.g_cost() + (check_level)
-			queue.append((check_level, cost, right_board))
+			queue.append((check_level, cost, right_board, 'RIGHT'))
 			set_board.add(right_board)
+			total_explored += 1
+
+	return (board_output, total_explored)
 
 
 
@@ -258,10 +275,18 @@ def main():
 	
 	start = time()	
 
-	bnb(board)
+	(board_output, total_explored) = bnb(board)
 
 	end = time()
 
+	if board_output is not None:
+		for elem in board_output:
+			if elem[1] != None:
+				print(elem[1])
+			print(elem[0])
+
+	if total_explored is not None:
+		print('Jumlah simpul yang dibangkitkan:', total_explored)
 	print('This program takes ', end - start, ' second(s)')
 
 if __name__ == '__main__':

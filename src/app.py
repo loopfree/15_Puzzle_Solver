@@ -98,15 +98,19 @@ def bnb(board):
 	if checker % 2 != 0:
 		# result['error'] = 'Unable to finish the 15 puzzle'
 		eel.set_error('Unable to finish the 15 puzzle')
-		return
+		return (None, None)
 
 	queue = [(0, 0, board)]
 	set_board = {board}
 
 	# result['boards'] = []
-	eel.reset_board()
 
 	board_id = 1
+
+	output_board = []
+	prev_level = 0
+
+	total_explored = 0
 
 	while True:
 
@@ -116,8 +120,12 @@ def bnb(board):
 		check_level = to_check[0] + 1
 
 		# result['boards'].append({'board_id': board_id, 'board':check_board.square})
-		eel.add_board({'board_id': board_id, 'board': check_board.square})
-		board_id += 1
+		if prev_level > check_level:
+			output_board = [board]
+
+		output_board.append(check_board)
+
+		prev_level = check_level
 
 		if check_board.g_cost() == 0:
 			break
@@ -153,6 +161,7 @@ def bnb(board):
 			cost = up_board.g_cost() + (check_level)
 			queue.append((check_level, cost, up_board))
 			set_board.add(up_board)
+			total_explored += 1
 
 		'''
 			move bottom
@@ -178,6 +187,7 @@ def bnb(board):
 			cost = bottom_board.g_cost() + (check_level)
 			queue.append((check_level, cost, bottom_board))
 			set_board.add(bottom_board)
+			total_explored += 1
 
 		'''
 			move left
@@ -203,6 +213,7 @@ def bnb(board):
 			cost = left_board.g_cost() + (check_level)
 			queue.append((check_level, cost, left_board))
 			set_board.add(left_board)
+			total_explored += 1
 
 		'''
 			move right
@@ -228,7 +239,9 @@ def bnb(board):
 			cost = right_board.g_cost() + (check_level)
 			queue.append((check_level, cost, right_board))
 			set_board.add(right_board)
-	# return result
+			total_explored += 1
+
+	return (output_board, total_explored)
 
 def main():
 	eel.init('dist')
@@ -239,7 +252,15 @@ def main():
 		for elem in board_val:
 			board.add_square(elem)
 		print('calculating')
-		bnb(board)
+		(output_board, total_explored) = bnb(board)
+		if total_explored is not None:
+			eel.set_explored(total_explored)
+		output_board_list = []
+		if output_board is not None:
+			for elem in output_board:
+				output_board_list.append(elem.square)
+		return output_board_list
+
 
 	@eel.expose
 	def stop_program():

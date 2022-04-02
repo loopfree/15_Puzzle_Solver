@@ -34,9 +34,16 @@ export default {
 		},
 		setValues(newValue) {
 			this.board_data = newValue
+			for(let i = 0; i < this.board_data.length; ++i) {
+				if(this.board_data[i] == '-1') {
+					this.board_data[i] = ''
+				} else {
+					this.board_data[i] = '' + this.board_data[i]
+				}
+			}
 			for(let i = this.board_data.length; i < 16; ++i) {
-			this.board_data.push('')
-		}
+				this.board_data.push('')
+			}
 		}
 	}
 }

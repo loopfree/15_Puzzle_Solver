@@ -12,25 +12,35 @@ export default {
 			errorMessage: '',
 			hasResult: false,
 			kurang: [],
-			boards: [],
-			kurangX: 0
+			kurangX: 0,
+			totalExplored: 0,
+			totalMove: 0
 		}
 	},
 	mounted() {
 		const reset_board = () => {
-			this.boards = []
+			this.$refs.gameBoard.resetValues()
+			this.hasResult = false
 		}
 		eel.expose(reset_board, 'reset_board')
 
-		const add_board = (newBoard) => {
-			for(let i = 0; i < newBoard.board.length; ++i) {
-				if(newBoard.board[i] == -1) {
-					newBoard.board[i] = ''
-				}
-			}
-			this.boards.push(newBoard)
+		// const set_board = (newBoard) => {
+		// 	let index = 0
+
+		// 	animateBoard(0, this.$refs.gameBoard, newBoard)
+		// 	console.log('exitted set board')
+		// 	// for(let i = 0; i < newBoard.board.length; ++i) {
+		// 	// 	if(newBoard.board[i] == -1) {
+		// 	// 		newBoard.board[i] = ''
+		// 	// 	}
+		// 	// }
+		// }
+		// eel.expose(set_board, 'set_board')
+
+		const set_explored = (newTotalExplored) => {
+			this.totalExplored = newTotalExplored;
 		}
-		eel.expose(add_board, 'add_board')
+		eel.expose(set_explored, 'set_explored')
 
 		const set_kurang_x = (newKurangX) => {
 			this.kurangX = newKurangX
@@ -46,7 +56,8 @@ export default {
 		const set_error = (newErrMsg) => {
 			this.error = true
 			this.errorMessage = newErrMsg
-			this.boards = []
+			this.totalExplored = 0
+			this.totalMove = 0
 		}
 		eel.expose(set_error, 'set_error')
 		
@@ -128,7 +139,9 @@ export default {
 				this.$refs.gameBoard.setValues(squares)
 			}
 
-			reader.readAsText(file)
+			if(file instanceof Blob) {
+				reader.readAsText(file)	
+			}
 		},
 		/**
 		 * fungsi ini berfungsi untuk menerima masukkan yang diterima dan mengecek
@@ -188,7 +201,31 @@ export default {
 			}
 
 			this.error = false
-			eel.calculate_bnb(squares)
+			eel.calculate_bnb(squares)((val) => {
+				let animateBoard = (index, gameBoard, newBoard) => {
+					console.log(newBoard)
+					if(index == newBoard.length) {
+						return
+					}
+
+					for(let i = 0; i < newBoard.length; ++i) {
+						if(newBoard[index][i] == -1) {
+							newBoard[index][i] = ''
+						}
+					}
+
+					gameBoard.setValues(newBoard[index])
+					setTimeout(animateBoard, 1000, index+1, gameBoard, newBoard, )
+				}
+
+				if(val.length == 0) {
+
+					return;
+				}
+
+				animateBoard(0, this.$refs.gameBoard, val)
+				this.totalMove = val.length
+			})
 		}
 	}
 }
@@ -227,15 +264,16 @@ export default {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class='vertical'>
 				<div>
 					<p>&Sigma; <sub>i=0</sub> <sup>16</sup> KURANG(i) + X = {{ kurangX }} </p>
 				</div>
-			</div>
-			
-			<div class='vertical result-div'>
-				Board:
-				<div v-for='item in boards' :key='item.board_id'>
-					<GameBoard class='gameboard-margin' :square_values='item.board' />
+				<div>
+					Total Simpul yang dibangkitkan: {{totalExplored}}
+				</div>
+				<div>
+					Total Move: {{totalMove}}
 				</div>
 			</div>
 		</div>
@@ -291,10 +329,6 @@ footer {
 
 .error-color {
 	color: red;
-}
-
-.result-div {
-	margin-left: 30px;
 }
 
 .box {
