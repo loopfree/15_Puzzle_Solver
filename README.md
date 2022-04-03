@@ -58,7 +58,7 @@
 
 ## Tampilan CLI
 
-### Tampilan Solveable Manual Input
+### Tampilan Solvable Manual Input
 
 <table>
    <tr>
@@ -67,7 +67,7 @@
    </tr>
 </table>
 
-### Tampilan Solveable File Input
+### Tampilan Solvable File Input
 
 <table>
    <tr>
@@ -90,19 +90,19 @@
 
 ![Tampilan awal](./a-readme-related/gui-awal.jpg)
 
-### Tampilan Awal Solveable Manual Input
+### Tampilan Awal Solvable Manual Input
 
 ![Tampilan akhir](./a-readme-related/gui-awal-s-1.jpg)
 
-### Tampilan Akhir Solveable Manual Input
+### Tampilan Akhir Solvable Manual Input
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-s-1.jpg)
 
-### Tampilan Awal Solveable Input File
+### Tampilan Awal Solvable Input File
 
 ![Tampilan akhir](./a-readme-related/gui-awal-s-2.jpg)
 
-### Tampilan Akhir Solveable Input File
+### Tampilan Akhir Solvable Input File
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-s-2.jpg)
 
