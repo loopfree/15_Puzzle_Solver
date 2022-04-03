@@ -84,7 +84,12 @@
 
 ### Tampilan GUI Ketika Melakukan Solving
 
-<img src="./a-readme-related/solve.gif" />
+<table>
+   <tr>
+      <td><img src="./a-readme-related/solve.gif" width="300" /></td>
+      <td>Berikut tampilan GUI ketika sedang melakukan sliding ketika solving. Slidingnya berupa gerakan ke atas, bawah, kiri, dan kanan</td>
+   </tr>
+</table>
 
 ### Tampilan GUI
 
