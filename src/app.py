@@ -226,7 +226,7 @@ def bnb(board):
 			succeed = False
 		else:
 			right_pos = col_pos + 1
-			right_index = right_board.get_index_xy(right_pos, col_pos)
+			right_index = right_board.get_index_xy(right_pos, row_pos)
 
 			temp = right_board.square[right_index]
 			right_board.square[right_index] = right_board.square[empty_pos]
