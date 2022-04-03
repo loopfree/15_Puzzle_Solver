@@ -82,19 +82,31 @@
 
 ## Tampilan GUI
 
-### Tampilan Awal
+### Tampilan GUI Ketika Melakukan Solving
+
+<img src="./a-readme-related/solve.gif" />
+
+### Tampilan GUI
 
 ![Tampilan awal](./a-readme-related/gui-awal.jpg)
+
+### Tampilan Awal Solveable Manual Input
+
+![Tampilan akhir](./a-readme-related/gui-awal-s-1.jpg)
 
 ### Tampilan Akhir Solveable Manual Input
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-s-1.jpg)
 
+### Tampilan Awal Solveable Input File
+
+![Tampilan akhir](./a-readme-related/gui-awal-s-2.jpg)
+
 ### Tampilan Akhir Solveable Input File
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-s-2.jpg)
 
-### Tampilan Akhir Unsolvable
+### Tampilan Unsolvable
 
 ![Tampilan akhir](./a-readme-related/gui-akhir-us.jpg)
 
