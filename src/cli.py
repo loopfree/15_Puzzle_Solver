@@ -114,7 +114,7 @@ def bnb(board):
 
 	prev_level = 0
 
-	total_explored = 0
+	total_explored = 1
 
 	board_output = []
 	while True:
@@ -125,7 +125,7 @@ def bnb(board):
 		check_level = to_check[0] + 1
 		check_dir = to_check[3]
 
-		if prev_level > check_level:
+		if prev_level >= check_level:
 			board_output = [(board, None)]
 
 		prev_level = check_level

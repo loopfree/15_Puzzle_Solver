@@ -14,7 +14,8 @@ export default {
 			kurang: [],
 			kurangX: 0,
 			totalExplored: 0,
-			totalMove: 0
+			totalMove: 0,
+			timeTaken: 0
 		}
 	},
 	mounted() {
@@ -23,19 +24,6 @@ export default {
 			this.hasResult = false
 		}
 		eel.expose(reset_board, 'reset_board')
-
-		// const set_board = (newBoard) => {
-		// 	let index = 0
-
-		// 	animateBoard(0, this.$refs.gameBoard, newBoard)
-		// 	console.log('exitted set board')
-		// 	// for(let i = 0; i < newBoard.board.length; ++i) {
-		// 	// 	if(newBoard.board[i] == -1) {
-		// 	// 		newBoard.board[i] = ''
-		// 	// 	}
-		// 	// }
-		// }
-		// eel.expose(set_board, 'set_board')
 
 		const set_explored = (newTotalExplored) => {
 			this.totalExplored = newTotalExplored;
@@ -52,6 +40,11 @@ export default {
 			this.kurang = newKurang
 		}
 		eel.expose(set_kurang, 'set_kurang')
+
+		const set_time_taken = (newTimeTaken) => {
+			this.timeTaken = newTimeTaken
+		}
+		eel.expose(set_time_taken, 'set_time_taken')
 		
 		const set_error = (newErrMsg) => {
 			this.error = true
@@ -215,7 +208,7 @@ export default {
 					}
 
 					gameBoard.setValues(newBoard[index])
-					setTimeout(animateBoard, 1000, index+1, gameBoard, newBoard, )
+					setTimeout(animateBoard, 1500, index+1, gameBoard, newBoard, )
 				}
 
 				if(val.length == 0) {
@@ -224,7 +217,7 @@ export default {
 				}
 
 				animateBoard(0, this.$refs.gameBoard, val)
-				this.totalMove = val.length
+				this.totalMove = val.length - 1
 			})
 		}
 	}
@@ -274,6 +267,9 @@ export default {
 				</div>
 				<div>
 					Total Move: {{totalMove}}
+				</div>
+				<div>
+					Time Taken: {{timeTaken}} Second(s)
 				</div>
 			</div>
 		</div>

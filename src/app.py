@@ -110,7 +110,7 @@ def bnb(board):
 	output_board = []
 	prev_level = 0
 
-	total_explored = 0
+	total_explored = 1
 
 	while True:
 
@@ -120,7 +120,7 @@ def bnb(board):
 		check_level = to_check[0] + 1
 
 		# result['boards'].append({'board_id': board_id, 'board':check_board.square})
-		if prev_level > check_level:
+		if prev_level >= check_level:
 			output_board = [board]
 
 		output_board.append(check_board)
@@ -252,7 +252,11 @@ def main():
 		for elem in board_val:
 			board.add_square(elem)
 		print('calculating')
+
+		start = time()
 		(output_board, total_explored) = bnb(board)
+		end = time()
+		eel.set_time_taken(end - start)
 		if total_explored is not None:
 			eel.set_explored(total_explored)
 		output_board_list = []
